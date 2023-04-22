@@ -12,6 +12,10 @@ const InputField: FC<IInput> = ({ onSubmit, autoCompleteValues }) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+    if (!e.target.value) {
+      setAutoCompleteItems([]);
+      return;
+    }
     const newAutoCompleteItems = autoCompleteValues?.filter((item) =>
       item.toLowerCase().includes(e.target.value.toLowerCase())
     );
