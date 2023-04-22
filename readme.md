@@ -23,6 +23,13 @@
 > * Share a write up on high level design decisions.
 > * Share a zip / git repo with functional code.
 ---
+### How to use
+
+1. Enter in the Input field component types like "Text", "Title" or "List" and the autocomplete will show the relevant suggestions
+2. Press enter and the component will be added to the UI
+3. Double click on Text or Title component to edit the text, and the buttons for Bold, Italic and underline will do the relevant operations
+4. Double click on the List component will open the Modal to add and remove the list items
+---
 
 ### Object Interface
 
