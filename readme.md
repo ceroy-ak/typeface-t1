@@ -57,3 +57,57 @@ export type IEditElement = (id: string, type: string, value: string, props?: Rec
 ```
 
 Which takes an identifier, component type, props and any childrennodes and then mutate the value to the global object in the *`App.tsx`* file
+
+![image](https://typeface-r-1.netlify.app/typefaceT1-D1.png)
+
+In the Props:
+
+```typescript
+export interface ITextField extends PropsWithChildren {
+  bold?: boolean;
+  underline?: boolean;
+  italic?: boolean;
+  fontSize?: number;
+  identifier: string;
+  onEdit: IEditElement;
+}
+```
+For example, the textfield component has the following props
+
+```typescript
+export const TextField: React.FC<ITextField> = ({
+  bold,
+  underline,
+  italic,
+  fontSize,
+  identifier,
+  onEdit,
+  children,
+}) => {
+  
+};
+```
+
+If relevant props are supplied or is changed then the props change and the relevant styles also change, and the onEdit function is used to make the changes based on the button click for Bold, Underline and Italic
+
+For editing we have used 2 approaches:
+
+1. For **List** component, onDoubleClick in any on the LI items (due to bubbling up of event), the onDoubleClick handler in UL element is called and a Modal pops up to add, and remove the list item
+2. For **Text** and **Title** elements I have used contentEditable field to edit the innerText directly in the DOM and then the onBlur event is used to update the value in the global object which passes the value to the onEdit function
+
+---
+
+## Features
+
+1. **Nested Components** - I have used a recursive function to render the nested components and the childrenNodes array is used to render the nested components
+2. **ContentEditable** - I have used contentEditable field to edit the innerText directly in the DOM and then the onBlur event is used to update the value in the global object which passes the value to the onEdit function
+3. **List** - onDoubleClick in any on the LI items (due to bubbling up of event), the onDoubleClick handler in UL element is called and a Modal pops up to add, and remove the list item
+4. **AutoComplete** - on input onChange event, the autocomplete function uses the .includes() method and renders a div with the relevant suggestions
+---
+## Future Improvements
+
+1. Props and currently not verified for any of the components, it is just assumed that the props are correct
+2. we can use useContxt to pass on the onEdit function to avoid prop drilling
+3. For state management currently I am using a global object with useState, we can use Redux to manage the state
+4. The Autocomplete does not work with arrows and enter key, we can use the arrow keys to navigate through the suggestions and enter key to select the suggestion
+
